@@ -48,13 +48,11 @@ class _MyHomePageState extends State<MyHomePage> {
   _formSubmit() async {
     if (_formKey.currentState?.validate() ?? false) {
       if (rememberMarked) {
-        //save username and password credentials
         await _storage.write(key: "username", value: _usernameController.text);
         await _storage.write(key: "password", value: _passwordController.text);
       } else {
         _storage.deleteAll();
       }
-
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
     }
@@ -141,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                   },
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 CheckboxListTile(
                     controlAffinity: ListTileControlAffinity.leading,
                     contentPadding: EdgeInsets.zero,
@@ -152,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         rememberMarked = value!;
                       });
                     }),
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
                 SizedBox(
                   height: 40,
                   width: double.infinity,
@@ -164,6 +162,34 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                const Text(
+                  'Forgout password?',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                RichText(
+                  text: TextSpan(
+                    text: "Don't have an account?",
+                    children: [
+                      TextSpan(
+                        text: ' Sign Up',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                    style: TextStyle(
+                      color: Colors.grey,
                     ),
                   ),
                 ),
